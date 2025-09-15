@@ -61,4 +61,6 @@ public class Car extends FuelVehicle {
 	public void setStatusPneu(String statusPneu) {
 		this.statusPneu = statusPneu;
 	}
+
+	
 }
