@@ -1,6 +1,6 @@
 package entities.eletric;
 
-public class Drone extends EletricVehicle {
+public class Drone extends ElectricVehicle {
     private double altitudeMax;
     private double tempoVoo;       
     private double altitudeAtual;
