@@ -1,6 +1,5 @@
 package entities.fuel;
 
-import entities.fuel.FuelVehicle;
 
 public class Car extends FuelVehicle {
     private double desgastePneus;  
