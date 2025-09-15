@@ -2,13 +2,13 @@ package entities.eletric;
 
 import entities.Vehicle;
 
-public class EletricVehicle extends Vehicle {
+public class ElectricVehicle extends Vehicle {
 	private double capacidadeMedia;  //kWh
 	private double autonomia;        //km
 	private double nivelBateria;     //%
 	private int ciclosRecarga;
 
-    public EletricVehicle(String modelo, String marca, String chassi, double capacidadeMedia, double autonomia) {
+    public ElectricVehicle(String modelo, String marca, String chassi, double capacidadeMedia, double autonomia) {
         super(modelo, marca, chassi);
         this.capacidadeMedia = capacidadeMedia;
         this.autonomia = autonomia;
@@ -59,6 +59,4 @@ public class EletricVehicle extends Vehicle {
 	public void setCiclosRecarga(int ciclosRecarga) {
 		this.ciclosRecarga = ciclosRecarga;
 	}
-    
-    
 }
