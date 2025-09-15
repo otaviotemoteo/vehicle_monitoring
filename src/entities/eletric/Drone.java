@@ -33,4 +33,38 @@ public class Drone extends ElectricVehicle {
     public void agendarManutencao() {
         System.out.println("Manutenção preventiva do drone agendada.");
     }
+
+    //get set retornando
+	public double getAltitudeMax() {
+		return altitudeMax;
+	}
+
+	public void setAltitudeMax(double altitudeMax) {
+		this.altitudeMax = altitudeMax;
+	}
+
+	public double getTempoVoo() {
+		return tempoVoo;
+	}
+
+	public void setTempoVoo(double tempoVoo) {
+		this.tempoVoo = tempoVoo;
+	}
+
+	public double getAltitudeAtual() {
+		return altitudeAtual;
+	}
+
+	public void setAltitudeAtual(double altitudeAtual) {
+		this.altitudeAtual = altitudeAtual;
+	}
+
+	public String getStatusVoo() {
+		return statusVoo;
+	}
+
+	public void setStatusVoo(String statusVoo) {
+		this.statusVoo = statusVoo;
+	}
+    
 }

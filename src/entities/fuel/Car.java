@@ -29,12 +29,36 @@ public class Car extends FuelVehicle {
         System.out.println("Manutenção agendada para " + kmProximaManutencao + " km.");
     }
 
-    public double getNivelOleo() {
-        return nivelOleo;
-    }
+    //get set retornando
+	public double getDesgastePneus() {
+		return desgastePneus;
+	}
 
-    public void setNivelOleo(double nivelOleo) {
-        this.nivelOleo = nivelOleo;
-    }
-    
+	public void setDesgastePneus(double desgastePneus) {
+		this.desgastePneus = desgastePneus;
+	}
+
+	public double getNivelOleo() {
+		return nivelOleo;
+	}
+
+	public void setNivelOleo(double nivelOleo) {
+		this.nivelOleo = nivelOleo;
+	}
+
+	public int getKmProximaManutencao() {
+		return kmProximaManutencao;
+	}
+
+	public void setKmProximaManutencao(int kmProximaManutencao) {
+		this.kmProximaManutencao = kmProximaManutencao;
+	}
+
+	public String getStatusPneu() {
+		return statusPneu;
+	}
+
+	public void setStatusPneu(String statusPneu) {
+		this.statusPneu = statusPneu;
+	}
 }

@@ -33,4 +33,29 @@ public class FuelVehicle extends Vehicle {
         nivelCombustivel -= gasto;
         if (nivelCombustivel < 0) nivelCombustivel = 0;
     }
+    
+    //get set retornando
+	public double getConsumoMedio() {
+		return consumoMedio;
+	}
+
+	public void setConsumoMedio(double consumoMedio) {
+		this.consumoMedio = consumoMedio;
+	}
+
+	public double getNivelCombustivel() {
+		return nivelCombustivel;
+	}
+
+	public void setNivelCombustivel(double nivelCombustivel) {
+		this.nivelCombustivel = nivelCombustivel;
+	}
+
+	public double getCapacidadeTanque() {
+		return capacidadeTanque;
+	}
+
+	public void setCapacidadeTanque(double capacidadeTanque) {
+		this.capacidadeTanque = capacidadeTanque;
+	}
 }

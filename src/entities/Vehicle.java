@@ -34,15 +34,6 @@ public abstract class Vehicle {
         System.out.println("Viagem registrada: " + km + " km. Total rodado: " + kmRodados + " km.");
     }
 
-    //get set retornando
-    public String getModelo() { return modelo; }
-    public String getMarca() { return marca; }
-    public String getChassi() { return chassi; }
-    public double getVelocidadeAtual() { return velocidadeAtual; }
-    public double getKmRodados() { return kmRodados; }
-    public boolean isAtivo() { return ativo; }
-    public void setAtivo(boolean ativo) { this.ativo = ativo; }
-
     @Override
     public String toString() {
         return "Veículo [" + marca + " " + modelo + 
@@ -50,4 +41,53 @@ public abstract class Vehicle {
                ", Km rodados=" + kmRodados + 
                ", Velocidade atual=" + velocidadeAtual + " km/h]";
     }
+
+    //get set retornando
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public double getVelocidadeAtual() {
+		return velocidadeAtual;
+	}
+
+	public void setVelocidadeAtual(double velocidadeAtual) {
+		this.velocidadeAtual = velocidadeAtual;
+	}
+
+	public String getChassi() {
+		return chassi;
+	}
+
+	public void setChassi(String chassi) {
+		this.chassi = chassi;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public double getKmRodados() {
+		return kmRodados;
+	}
+
+	public void setKmRodados(double kmRodados) {
+		this.kmRodados = kmRodados;
+	}
 }
