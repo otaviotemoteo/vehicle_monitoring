@@ -66,5 +66,4 @@ public class Drone extends ElectricVehicle {
 	public void setStatusVoo(String statusVoo) {
 		this.statusVoo = statusVoo;
 	}
-    
 }
