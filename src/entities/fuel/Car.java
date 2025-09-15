@@ -1,4 +1,4 @@
-package entities.car;
+package entities.fuel;
 
 import entities.fuel.FuelVehicle;
 
