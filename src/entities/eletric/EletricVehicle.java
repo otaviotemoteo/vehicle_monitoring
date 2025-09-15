@@ -3,10 +3,10 @@ package entities.eletric;
 import entities.Vehicle;
 
 public class EletricVehicle extends Vehicle {
-    protected double capacidadeMedia;  //kWh
-    protected double autonomia;        //km
-    protected double nivelBateria;     //%
-    protected int ciclosRecarga;
+	private double capacidadeMedia;  //kWh
+	private double autonomia;        //km
+	private double nivelBateria;     //%
+	private int ciclosRecarga;
 
     public EletricVehicle(String modelo, String marca, String chassi, double capacidadeMedia, double autonomia) {
         super(modelo, marca, chassi);

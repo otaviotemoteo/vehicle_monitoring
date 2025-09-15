@@ -2,12 +2,12 @@ package entities;
 
 public abstract class Vehicle {
     
-    protected String modelo;
-    protected String marca;
-    protected double velocidadeAtual;
-    protected String chassi;
-    protected boolean ativo;
-    protected double kmRodados;
+    private String modelo;
+    private String marca;
+    private double velocidadeAtual;
+    private String chassi;
+    private boolean ativo;
+    private double kmRodados;
 
     public Vehicle(String modelo, String marca, String chassi) {
         this.modelo = modelo;
@@ -16,6 +16,9 @@ public abstract class Vehicle {
         this.velocidadeAtual = 0.0;
         this.ativo = true;
         this.kmRodados = 0.0;
+    }
+    
+    public Vehicle() {
     }
 
     //comportamento

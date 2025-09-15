@@ -3,9 +3,9 @@ package entities.fuel;
 import entities.Vehicle;
 
 public class FuelVehicle extends Vehicle {
-    protected double consumoMedio;      // km/l
-    protected double nivelCombustivel;  // litros
-    protected double capacidadeTanque;  // litros
+	private double consumoMedio;      // km/l
+	private double nivelCombustivel;  // litros
+	private double capacidadeTanque;  // litros
 
     public FuelVehicle(String modelo, String marca, String chassi, double consumoMedio, double capacidadeTanque) {
         super(modelo, marca, chassi);
