@@ -27,7 +27,7 @@ public class Drone extends EletricVehicle {
     }
 
     public double calcularTempoVooRestante() {
-        return (nivelBateria / 100) * tempoVoo;
+        return (getNivelBateria() / 100) * tempoVoo;
     }
 
     public void agendarManutencao() {

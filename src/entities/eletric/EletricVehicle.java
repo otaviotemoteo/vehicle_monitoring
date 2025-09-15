@@ -27,4 +27,38 @@ public class EletricVehicle extends Vehicle {
     public double calcularAutonomia() {
         return (nivelBateria / 100) * autonomia;
     }
+
+	public double getCapacidadeMedia() {
+		return capacidadeMedia;
+	}
+
+	public void setCapacidadeMedia(double capacidadeMedia) {
+		this.capacidadeMedia = capacidadeMedia;
+	}
+
+	public double getAutonomia() {
+		return autonomia;
+	}
+
+	public void setAutonomia(double autonomia) {
+		this.autonomia = autonomia;
+	}
+
+	public double getNivelBateria() {
+		return nivelBateria;
+	}
+
+	public void setNivelBateria(double nivelBateria) {
+		this.nivelBateria = nivelBateria;
+	}
+
+	public int getCiclosRecarga() {
+		return ciclosRecarga;
+	}
+
+	public void setCiclosRecarga(int ciclosRecarga) {
+		this.ciclosRecarga = ciclosRecarga;
+	}
+    
+    
 }
