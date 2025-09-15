@@ -28,4 +28,13 @@ public class Car extends FuelVehicle {
     public void agendarManutencao() {
         System.out.println("Manutenção agendada para " + kmProximaManutencao + " km.");
     }
+
+    public double getNivelOleo() {
+        return nivelOleo;
+    }
+
+    public void setNivelOleo(double nivelOleo) {
+        this.nivelOleo = nivelOleo;
+    }
+    
 }
