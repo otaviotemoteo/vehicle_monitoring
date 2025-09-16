@@ -1,99 +1,79 @@
 package entities;
 
 public abstract class Vehicle {
+    private String modelo;
+    private String marca;
+    private double velocidadeAtual;
+    private String chassi;
+    private boolean ativo;
+    private double kmRodados;
 
-	private String modelo;
-	private String marca;
-	private double velocidadeAtual;
-	private String chassi;
-	private boolean ativo;
+    public Vehicle(String modelo, String marca, String chassi) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.chassi = chassi;
+        this.velocidadeAtual = 0.0;
+        this.ativo = false; // começa desligado
+        this.kmRodados = 0.0;
+    }
 
-	public Vehicle(String modelo, String marca, String chassi) {
-		this.modelo = modelo;
-		this.marca = marca;
-		this.chassi = chassi;
-		this.velocidadeAtual = 0.0;
-		this.ativo = false;
-	}
+    public Vehicle() {}
 
-	public Vehicle() {
-	}
+    public void acelerar(double velocidade) {
+        this.velocidadeAtual += velocidade;
+        System.out.println(marca + " " + modelo + " acelerou para " + this.velocidadeAtual + " km/h.");
+    }
 
-	// comportamento
-	public void acelerar(double velocidade) {
-		this.velocidadeAtual += velocidade;
-		System.out.println(marca + " " + modelo + " acelerou para " + this.velocidadeAtual + " km/h.");
-	}
+    public abstract double calcularAutonomia();
 
-	public double calcularAutonomia() {
-        //valor generico para o calculo de autonomia
-        return 500.0;
+    public void registrarViagem(double km) {
+        this.kmRodados += km;
+        System.out.println("Viagem registrada: " + km + " km. Total rodado: " + kmRodados + " km.");
     }
 
     public String monitorarDesempenho() {
-        return "Desempenho de " + marca + " " + modelo + ":\n" +
-               "Velocidade atual = " + velocidadeAtual + " km/h\n" +
-               "Status do veículo = " + (ativo ? "Ativo" : "Inativo") + "\n";
+        return "Desempenho de " + marca + " " + modelo +
+               ": Velocidade atual = " + velocidadeAtual + " km/h, Km rodados = " + kmRodados +
+               ", Status = " + (ativo ? "Ativo" : "Inativo");
     }
 
     public String gerarRelatorio() {
-        return "===== Relatório de " + marca + " " + modelo + " =====\n" +
-               "Chassi = " + chassi + "\n" +
-               "Velocidade atual = " + velocidadeAtual + " km/h\n" +
-               "Status do veículo = " + (ativo ? "Ativo" : "Inativo") + "\n" +
-               "Autonomia Estimada = " + calcularAutonomia() + " km\n";
+        return "Relatório de " + marca + " " + modelo +
+               " | Chassi=" + chassi +
+               ", Km rodados=" + kmRodados +
+               ", Velocidade atual=" + velocidadeAtual + " km/h" +
+               ", Status=" + (ativo ? "Ativo" : "Inativo") +
+               ", Autonomia estimada=" + calcularAutonomia() + " km";
     }
 
-	public void registrarViagem(double km) {
-		System.out.println("Viagem registrada: " + km + " km.");
-	}
+    @Override
+    public String toString() {
+        return "Veículo [" +
+               "Marca=" + marca +
+               ", Modelo=" + modelo +
+               ", Chassi=" + chassi +
+               ", Km rodados=" + kmRodados +
+               ", Velocidade atual=" + velocidadeAtual + " km/h" +
+               ", Status=" + (ativo ? "Ativo" : "Inativo") +
+               "]";
+    }
 
-	@Override
-	public String toString() {
-		return "Veículo [" + marca + " " + modelo +
-				", Chassi=" + chassi +
-				", Velocidade atual=" + velocidadeAtual + " km/h]";
-	}
+    
+    public String getModelo() { return modelo; }
+    public void setModelo(String modelo) { this.modelo = modelo; }
 
-	// get set retornando
-	public String getModelo() {
-		return modelo;
-	}
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public double getVelocidadeAtual() { return velocidadeAtual; }
+    public void setVelocidadeAtual(double velocidadeAtual) { this.velocidadeAtual = velocidadeAtual; }
 
-	public String getMarca() {
-		return marca;
-	}
+    public String getChassi() { return chassi; }
+    public void setChassi(String chassi) { this.chassi = chassi; }
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
+    public boolean isAtivo() { return ativo; }
+    public void setAtivo(boolean ativo) { this.ativo = ativo; }
 
-	public double getVelocidadeAtual() {
-		return velocidadeAtual;
-	}
-
-	public void setVelocidadeAtual(double velocidadeAtual) {
-		this.velocidadeAtual = velocidadeAtual;
-	}
-
-	public String getChassi() {
-		return chassi;
-	}
-
-	public void setChassi(String chassi) {
-		this.chassi = chassi;
-	}
-
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-
+    public double getKmRodados() { return kmRodados; }
+    public void setKmRodados(double kmRodados) { this.kmRodados = kmRodados; }
 }
