@@ -14,23 +14,62 @@ public class Car extends FuelVehicle {
         this.statusPneu = "Bom";
     }
 
-    public String verificarPneus() { return statusPneu; }
-
-    public void trocarOleo() { nivelOleo = 100; }
-
-    public double calcularDesgastePneus() { return desgastePneus; }
-
-    public void agendarManutencao() {
-        System.out.println("Manutenção agendada para " + kmProximaManutencao + " km.");
+    
+    public void ligar() {
+        if (!isAtivo()) {
+            setAtivo(true);
+            System.out.println("Carro ligado com sucesso!");
+        } else {
+            System.out.println("O carro já está ligado!");
+        }
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-               " | Carro [Nível de óleo=" + nivelOleo + "%" +
-               ", Desgaste pneus=" + desgastePneus + "%" +
-               ", Status pneus=" + statusPneu +
-               ", Próxima manutenção=" + kmProximaManutencao + " km]";
+    public void desligar() {
+        if (isAtivo()) {
+            setAtivo(false);
+            System.out.println("Carro desligado com sucesso!");
+        } else {
+            System.out.println("O carro já está desligado!");
+        }
+    }
+
+    public void fazerManutencao() {
+        if (isAtivo()) {
+            System.out.println("ERRO: Não é possível fazer manutenção com o carro ligado!");
+            return;
+        }
+
+        boolean precisaManutencao = false;
+
+        if (nivelOleo < 30) {
+            trocarOleo();
+            precisaManutencao = true;
+        }
+
+        if (desgastePneus > 70 || !statusPneu.equals("Bom")) {
+            trocarPneus();
+            precisaManutencao = true;
+        }
+
+        if (precisaManutencao) {
+            System.out.println("Manutenção completa realizada!");
+        } else {
+            System.out.println("O carro não precisa de manutenção no momento.");
+        }
+    }
+
+    
+    private void trocarPneus() {
+        desgastePneus = 0;
+        statusPneu = "Bom";
+        System.out.println("Pneus trocados!");
+    }
+
+    public String verificarPneus() { return statusPneu; }
+    public void trocarOleo() { nivelOleo = 100; }
+    public double calcularDesgastePneus() { return desgastePneus; }
+    public void agendarManutencao() {
+        System.out.println("Manutenção agendada para " + kmProximaManutencao + " km.");
     }
 
     
