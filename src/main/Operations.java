@@ -77,16 +77,16 @@ public class Operations {
             
             switch (opcao) {
                 case 1:
-                    ligarDrone(drone);
+                	drone.ligar();
                     break;
                 case 2:
-                    desligarDrone(drone);
+                	drone.desligar();
                     break;
                 case 3:
-                	decolarDrone(drone);
+                	drone.decolar();
                     break;
                 case 4:
-                	pousarDrone(drone);
+                	drone.pousar();
                     break;
                 case 5:
                 	registrarViagemDrone(drone);
@@ -178,22 +178,6 @@ public class Operations {
     }
     
     // === OPERAÇÕES DO DRONE ===
-    private static void ligarDrone(Drone drone) {
-        drone.ligar();
-    }
-    
-    private static void desligarDrone(Drone drone) {
-        drone.desligar();
-    }
-    
-    
-    private static void decolarDrone(Drone drone) {
-        drone.decolar();
-    }
-    
-    private static void pousarDrone(Drone drone) {
-        drone.pousar();
-    }
     
     private static void registrarViagemDrone(Drone drone) {
         if (drone.isAtivo() && drone.getStatusVoo().equals("Em voo")) {
@@ -221,6 +205,6 @@ public class Operations {
     }
     
     private static void recarregarBateriaDrone(Drone drone) {
-        drone.recarregarBateria(); // Usa o método da classe Drone que já valida se está desligado e pousado
+        drone.recarregarBateria();
     }
 }
