@@ -96,13 +96,14 @@ public class Main {
     private static void visualizarCarro() {
         System.out.println("\n--- INFORMAÇÕES DO CARRO ---");
         System.out.println(carro.toString());
-        System.out.println("Nível de Combustível: " + carro.getNivelCombustivel() + " L");
+        System.out.println("Status: " + (carro.isAtivo() ? "LIGADO" : "DESLIGADO"));
+        System.out.println("Nível de Combustível: " + String.format("%.2f", carro.getNivelCombustivel()) + " L");
         System.out.println("Capacidade do Tanque: " + carro.getCapacidadeTanque() + " L");
         System.out.println("Consumo Médio: " + carro.getConsumoMedio() + " km/L");
-        System.out.println("Autonomia: " + carro.calcularAutonomia() + " km");
-        System.out.println("Nível de Óleo: " + carro.getNivelOleo() + "%");
+        System.out.println("Autonomia: " + String.format("%.2f", carro.calcularAutonomia()) + " km");
+        System.out.println("Nível de Óleo: " + String.format("%.2f", carro.getNivelOleo()) + "%");
         System.out.println("Status dos Pneus: " + carro.verificarPneus());
-        System.out.println("Desgaste dos Pneus: " + carro.calcularDesgastePneus() + "%");
+        System.out.println("Desgaste dos Pneus: " + String.format("%.2f", carro.calcularDesgastePneus()) + "%");
         System.out.println("Próxima Manutenção: " + carro.getKmProximaManutencao() + " km");
     }
     
@@ -331,14 +332,16 @@ public class Main {
     private static void operarCarro() {
         while (true) {
             System.out.println("\n--- OPERAR CARRO ---");
-            System.out.println("1. Acelerar");
-            System.out.println("2. Registrar viagem");
-            System.out.println("3. Abastecer");
-            System.out.println("4. Trocar óleo");
-            System.out.println("5. Verificar pneus");
-            System.out.println("6. Agendar manutenção");
-            System.out.println("7. Calcular autonomia");
-            System.out.println("8. Atualizar consumo");
+            System.out.println("Status: " + (carro.isAtivo() ? "LIGADO" : "DESLIGADO"));
+            System.out.println("1. Ligar");
+            System.out.println("2. Desligar");
+            System.out.println("3. Acelerar");
+            System.out.println("4. Registrar viagem");
+            System.out.println("5. Abastecer");
+            System.out.println("6. Trocar óleo");
+            System.out.println("7. Verificar pneus");
+            System.out.println("8. Fazer manutenção");
+            System.out.println("9. Ver tanto de gasolina/autonomia");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             
@@ -347,38 +350,71 @@ public class Main {
             
             switch (opcao) {
                 case 1:
-                    System.out.print("Velocidade para acelerar (km/h): ");
-                    double velocidade = scanner.nextDouble();
-                    carro.acelerar(velocidade);
+                    carro.ligar();
                     break;
                 case 2:
-                    System.out.print("Distância da viagem (km): ");
-                    double km = scanner.nextDouble();
-                    carro.registrarViagem(km);
+                    carro.desligar();
                     break;
                 case 3:
-                    System.out.print("Litros para abastecer: ");
-                    double litros = scanner.nextDouble();
-                    carro.abastecer(litros);
+                    if (carro.isAtivo()) {
+                        System.out.print("Velocidade para acelerar (km/h): ");
+                        double velocidade = scanner.nextDouble();
+                        carro.acelerar(velocidade);
+                    } else {
+                        System.out.println("ERRO: O carro precisa estar ligado para acelerar!");
+                    }
                     break;
                 case 4:
-                    carro.trocarOleo();
+                    if (carro.isAtivo()) {
+                        System.out.print("Distância da viagem (km): ");
+                        double km = scanner.nextDouble();
+                        carro.registrarViagem(km);
+                        // Atualiza consumo automaticamente após a viagem
+                        carro.atualizarConsumo(km);
+                        // Simula desgaste dos componentes
+                        carro.setDesgastePneus(carro.getDesgastePneus() + (km * 0.01)); // 0.01% por km
+                        carro.setNivelOleo(carro.getNivelOleo() - (km * 0.02)); // 0.02% por km
+                    } else {
+                        System.out.println("ERRO: O carro precisa estar ligado para registrar viagem!");
+                    }
                     break;
                 case 5:
-                    System.out.println("Status dos pneus: " + carro.verificarPneus());
-                    System.out.println("Desgaste: " + carro.calcularDesgastePneus() + "%");
+                    if (!carro.isAtivo()) {
+                        System.out.print("Litros para abastecer: ");
+                        double litros = scanner.nextDouble();
+                        carro.abastecer(litros);
+                    } else {
+                        System.out.println("ERRO: O carro precisa estar desligado para abastecer!");
+                    }
                     break;
                 case 6:
-                    carro.agendarManutencao();
+                    if (!carro.isAtivo()) {
+                        carro.trocarOleo();
+                    } else {
+                        System.out.println("ERRO: O carro precisa estar desligado para trocar óleo!");
+                    }
                     break;
                 case 7:
-                    System.out.println("Autonomia atual: " + carro.calcularAutonomia() + " km");
+                    if (!carro.isAtivo()) {
+                        System.out.println("Status dos pneus: " + carro.verificarPneus());
+                        System.out.println("Desgaste: " + String.format("%.2f", carro.calcularDesgastePneus()) + "%");
+                    } else {
+                        System.out.println("ERRO: O carro precisa estar desligado para verificar pneus!");
+                    }
                     break;
                 case 8:
-                    System.out.print("Distância percorrida (km): ");
-                    double distancia = scanner.nextDouble();
-                    carro.atualizarConsumo(distancia);
-                    System.out.println("Consumo atualizado!");
+                    if (!carro.isAtivo()) {
+                        carro.fazerManutencao();
+                    } else {
+                        System.out.println("ERRO: O carro precisa estar desligado para fazer manutenção!");
+                    }
+                    break;
+                case 9:
+                    System.out.println("=== INFORMAÇÕES DE COMBUSTÍVEL ===");
+                    System.out.println("Nível atual: " + String.format("%.2f", carro.getNivelCombustivel()) + " L");
+                    System.out.println("Capacidade total: " + carro.getCapacidadeTanque() + " L");
+                    System.out.println("Autonomia atual: " + String.format("%.2f", carro.calcularAutonomia()) + " km");
+                    System.out.println("Consumo médio: " + carro.getConsumoMedio() + " km/L");
                     break;
                 case 0:
                     return;
