@@ -64,12 +64,11 @@ public class Operations {
             System.out.println("Status: " + (drone.isAtivo() ? "LIGADO" : "DESLIGADO"));
             System.out.println("1. Ligar");
             System.out.println("2. Desligar");
-            System.out.println("3. Acelerar");
-            System.out.println("4. Decolar");
-            System.out.println("5. Pousar");
-            System.out.println("6. Registrar viagem");
-            System.out.println("7. Recarregar bateria");
-            System.out.println("8. Calcular tempo de voo restante");
+            System.out.println("3. Decolar");
+            System.out.println("4. Pousar");
+            System.out.println("5. Registrar viagem");
+            System.out.println("6. Recarregar bateria");
+            System.out.println("7. Calcular tempo de voo restante");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             
@@ -84,22 +83,19 @@ public class Operations {
                     desligarDrone(drone);
                     break;
                 case 3:
-                    acelerarDrone(drone);
+                	decolarDrone(drone);
                     break;
                 case 4:
-                    decolarDrone(drone);
+                	pousarDrone(drone);
                     break;
                 case 5:
-                    pousarDrone(drone);
+                	registrarViagemDrone(drone);
                     break;
                 case 6:
-                    registrarViagemDrone(drone);
+                	recarregarBateriaDrone(drone);
                     break;
                 case 7:
-                    recarregarBateriaDrone(drone);
-                    break;
-                case 8:
-                    Views.exibirTempoVooRestante(drone);
+                	Views.exibirTempoVooRestante(drone);
                     break;
                 case 0:
                     return;
@@ -150,6 +146,7 @@ public class Operations {
             System.out.print("Litros para abastecer: ");
             double litros = scanner.nextDouble();
             carro.abastecer(litros);
+            System.out.println("Carro abastecido com sucesso!");
         } else {
             System.out.println("ERRO: O carro precisa estar desligado para abastecer!");
         }
@@ -158,6 +155,7 @@ public class Operations {
     private static void trocarOleoCarro(Car carro) {
         if (!carro.isAtivo()) {
             carro.trocarOleo();
+            System.out.println("Oléo do carro trocado com sucesso!");
         } else {
             System.out.println("ERRO: O carro precisa estar desligado para trocar óleo!");
         }
@@ -181,31 +179,16 @@ public class Operations {
     
     // === OPERAÇÕES DO DRONE ===
     private static void ligarDrone(Drone drone) {
-        drone.setAtivo(true);
-        System.out.println("Drone ligado com sucesso!");
+        drone.ligar();
     }
     
     private static void desligarDrone(Drone drone) {
-        drone.setAtivo(false);
-        System.out.println("Drone desligado com sucesso!");
+        drone.desligar();
     }
     
-    private static void acelerarDrone(Drone drone) {
-        if (drone.isAtivo()) {
-            System.out.print("Velocidade para acelerar (km/h): ");
-            double velocidade = scanner.nextDouble();
-            drone.acelerar(velocidade);
-        } else {
-            System.out.println("ERRO: O drone precisa estar ligado para acelerar!");
-        }
-    }
     
     private static void decolarDrone(Drone drone) {
-        if (drone.isAtivo()) {
-            drone.decolar();
-        } else {
-            System.out.println("ERRO: O drone precisa estar ligado para decolar!");
-        }
+        drone.decolar();
     }
     
     private static void pousarDrone(Drone drone) {
@@ -213,27 +196,31 @@ public class Operations {
     }
     
     private static void registrarViagemDrone(Drone drone) {
-        if (drone.isAtivo()) {
+        if (drone.isAtivo() && drone.getStatusVoo().equals("Em voo")) {
             System.out.print("Distância da viagem (km): ");
             double km = scanner.nextDouble();
             drone.registrarViagem(km);
             // Simula consumo de bateria baseado na distância
             double consumoBateria = km * 0.5; // 0.5% por km
-            drone.setNivelBateria(drone.getNivelBateria() - consumoBateria);
-            if (drone.getNivelBateria() < 0) drone.setNivelBateria(0);
+            double novoBateria = drone.getNivelBateria() - consumoBateria;
+            if (novoBateria < 0) novoBateria = 0;
+            drone.setNivelBateria(novoBateria);
+            
             System.out.println("Bateria consumida: " + String.format("%.2f", consumoBateria) + "%");
-        } else {
+            System.out.println("Nível atual da bateria: " + String.format("%.1f", drone.getNivelBateria()) + "%");
+            
+            // Aviso se bateria estiver baixa
+            if (drone.getNivelBateria() < 20) {
+                System.out.println("⚠️  ATENÇÃO: Bateria baixa! Considere pousar e recarregar.");
+            }
+        } else if (!drone.isAtivo()) {
             System.out.println("ERRO: O drone precisa estar ligado para registrar viagem!");
+        } else {
+            System.out.println("ERRO: O drone precisa estar em voo para registrar viagem!");
         }
     }
     
     private static void recarregarBateriaDrone(Drone drone) {
-        if (!drone.isAtivo()) {
-            System.out.print("Percentual para recarregar (%): ");
-            double percentual = scanner.nextDouble();
-            drone.recarregar(percentual);
-        } else {
-            System.out.println("ERRO: O drone precisa estar desligado para recarregar!");
-        }
+        drone.recarregarBateria(); // Usa o método da classe Drone que já valida se está desligado e pousado
     }
 }
