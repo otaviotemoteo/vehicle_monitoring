@@ -14,13 +14,11 @@ public class Operations {
             System.out.println("Status: " + (carro.isAtivo() ? "LIGADO" : "DESLIGADO"));
             System.out.println("1. Ligar");
             System.out.println("2. Desligar");
-            System.out.println("3. Acelerar");
-            System.out.println("4. Registrar viagem");
-            System.out.println("5. Abastecer");
-            System.out.println("6. Trocar óleo");
-            System.out.println("7. Verificar pneus");
-            System.out.println("8. Fazer manutenção");
-            System.out.println("9. Ver informações de combustível/autonomia");
+            System.out.println("3. Registrar viagem");
+            System.out.println("4. Abastecer");
+            System.out.println("5. Trocar óleo");
+            System.out.println("6. Verificar pneus");
+            System.out.println("7. Fazer manutenção");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             
@@ -35,25 +33,19 @@ public class Operations {
                     desligarCarro(carro);
                     break;
                 case 3:
-                    acelerarCarro(carro);
-                    break;
-                case 4:
                     registrarViagemCarro(carro);
                     break;
-                case 5:
+                case 4:
                     abastecerCarro(carro);
                     break;
-                case 6:
+                case 5:
                     trocarOleoCarro(carro);
                     break;
-                case 7:
+                case 6:
                     verificarPneusCarro(carro);
                     break;
-                case 8:
+                case 7:
                     fazerManutencaoCarro(carro);
-                    break;
-                case 9:
-                    Views.exibirInformacoesCombustivel(carro);
                     break;
                 case 0:
                     return;
@@ -127,16 +119,6 @@ public class Operations {
     
     private static void desligarCarro(Car carro) {
         carro.desligar();
-    }
-    
-    private static void acelerarCarro(Car carro) {
-        if (carro.isAtivo()) {
-            System.out.print("Velocidade para acelerar (km/h): ");
-            double velocidade = scanner.nextDouble();
-            carro.acelerar(velocidade);
-        } else {
-            System.out.println("ERRO: O carro precisa estar ligado para acelerar!");
-        }
     }
     
     private static void registrarViagemCarro(Car carro) {
