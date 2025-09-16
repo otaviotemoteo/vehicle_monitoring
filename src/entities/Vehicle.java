@@ -13,7 +13,7 @@ public abstract class Vehicle {
         this.marca = marca;
         this.chassi = chassi;
         this.velocidadeAtual = 0.0;
-        this.ativo = false; // começa desligado
+        this.ativo = false;
         this.kmRodados = 0.0;
     }
 
@@ -21,14 +21,12 @@ public abstract class Vehicle {
 
     public void acelerar(double velocidade) {
         this.velocidadeAtual += velocidade;
-        System.out.println(marca + " " + modelo + " acelerou para " + this.velocidadeAtual + " km/h.");
     }
 
     public abstract double calcularAutonomia();
 
     public void registrarViagem(double km) {
         this.kmRodados += km;
-        System.out.println("Viagem registrada: " + km + " km. Total rodado: " + kmRodados + " km.");
     }
 
     public String monitorarDesempenho() {
@@ -38,24 +36,21 @@ public abstract class Vehicle {
     }
 
     public String gerarRelatorio() {
-        return "Relatório de " + marca + " " + modelo +
-               " | Chassi=" + chassi +
-               ", Km rodados=" + kmRodados +
-               ", Velocidade atual=" + velocidadeAtual + " km/h" +
-               ", Status=" + (ativo ? "Ativo" : "Inativo") +
-               ", Autonomia estimada=" + calcularAutonomia() + " km";
+        return "Relatório de " + marca + " " + modelo + "\n" +
+               "Chassi = " + chassi + "\n" +
+               "Km rodados = " + kmRodados + "\n" +
+               "Velocidade atual = " + velocidadeAtual + " km/h\n" +
+               "Status = " + (ativo ? "Ativo" : "Inativo") + "\n" +
+               "Autonomia estimada = " + calcularAutonomia() + " km";
     }
 
     @Override
     public String toString() {
-        return "Veículo [" +
-               "Marca=" + marca +
-               ", Modelo=" + modelo +
+        return "Veículo [" + marca + " " + modelo +
                ", Chassi=" + chassi +
                ", Km rodados=" + kmRodados +
                ", Velocidade atual=" + velocidadeAtual + " km/h" +
-               ", Status=" + (ativo ? "Ativo" : "Inativo") +
-               "]";
+               ", Status=" + (ativo ? "Ativo" : "Inativo") + "]";
     }
 
     
