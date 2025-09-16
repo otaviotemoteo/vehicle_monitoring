@@ -6,7 +6,7 @@ import entities.eletric.Drone;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    
+
     // Instanciação dos objetos
     private static Car carro;
     private static Drone drone;
@@ -117,7 +117,6 @@ public class Main {
         System.out.println("Tempo de Voo: " + drone.getTempoVoo() + " min");
         System.out.println("Tempo de Voo Restante: " + drone.calcularTempoVooRestante() + " min");
         System.out.println("Status do Voo: " + drone.getStatusVoo());
-        System.out.println("Ciclos de Recarga: " + drone.getCiclosRecarga());
     }
     
     private static void menuAlterarClasses() {
@@ -230,8 +229,6 @@ public class Main {
             System.out.println("7. Alterar autonomia");
             System.out.println("8. Alterar altitude máxima");
             System.out.println("9. Alterar tempo de voo");
-            System.out.println("10. Alterar altitude atual");
-            System.out.println("11. Alterar status do voo");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             
@@ -283,16 +280,6 @@ public class Main {
                     System.out.print("Novo tempo de voo (min): ");
                     drone.setTempoVoo(scanner.nextDouble());
                     System.out.println("Tempo de voo alterado!");
-                    break;
-                case 10:
-                    System.out.print("Nova altitude atual (m): ");
-                    drone.setAltitudeAtual(scanner.nextDouble());
-                    System.out.println("Altitude atual alterada!");
-                    break;
-                case 11:
-                    System.out.print("Novo status do voo: ");
-                    drone.setStatusVoo(scanner.nextLine());
-                    System.out.println("Status do voo alterado!");
                     break;
                 case 0:
                     return;
@@ -394,14 +381,14 @@ public class Main {
     private static void operarDrone() {
         while (true) {
             System.out.println("\n--- OPERAR DRONE ---");
-            System.out.println("1. Acelerar");
-            System.out.println("2. Registrar viagem");
+            System.out.println("1. Ligar");
+            System.out.println("2. Desligar");
             System.out.println("3. Decolar");
             System.out.println("4. Pousar");
-            System.out.println("5. Recarregar bateria");
-            System.out.println("6. Calcular autonomia");
+            System.out.println("5. Registrar viagem");
+            System.out.println("6. Recarregar bateria");
             System.out.println("7. Calcular tempo de voo restante");
-            System.out.println("8. Agendar manutenção");
+            System.out.println("8. Ver próxima manutenção");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             
@@ -410,14 +397,10 @@ public class Main {
             
             switch (opcao) {
                 case 1:
-                    System.out.print("Velocidade para acelerar (km/h): ");
-                    double velocidade = scanner.nextDouble();
-                    drone.acelerar(velocidade);
+                    drone.ligar();
                     break;
                 case 2:
-                    System.out.print("Distância da viagem (km): ");
-                    double km = scanner.nextDouble();
-                    drone.registrarViagem(km);
+                    drone.desligar();
                     break;
                 case 3:
                     drone.decolar();
@@ -426,18 +409,18 @@ public class Main {
                     drone.pousar();
                     break;
                 case 5:
-                    System.out.print("Percentual para recarregar (%): ");
-                    double percentual = scanner.nextDouble();
-                    drone.recarregar(percentual);
+                    System.out.print("Distância da viagem (km): ");
+                    double km = scanner.nextDouble();
+                    drone.registrarViagem(km);
                     break;
                 case 6:
-                    System.out.println("Autonomia atual: " + drone.calcularAutonomia() + " km");
+                    drone.recarregarBateria();
                     break;
                 case 7:
                     System.out.println("Tempo de voo restante: " + drone.calcularTempoVooRestante() + " min");
                     break;
                 case 8:
-                    drone.agendarManutencao();
+                    drone.verProximaManutencao();
                     break;
                 case 0:
                     return;

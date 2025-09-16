@@ -28,6 +28,19 @@ public class Car extends FuelVehicle {
         System.out.println("Manutenção agendada para " + kmProximaManutencao + " km.");
     }
 
+
+		@Override
+	public String toString() {
+    return super.toString() + 
+           " | Carro [" +
+           "Nível de óleo=" + nivelOleo + "%" +
+           ", Desgaste pneus=" + desgastePneus + "%" +
+           ", Status pneus=" + statusPneu +
+           ", Próxima manutenção=" + kmProximaManutencao + " km" +
+           "]";
+}
+
+
     //get set retornando
 	public double getDesgastePneus() {
 		return desgastePneus;

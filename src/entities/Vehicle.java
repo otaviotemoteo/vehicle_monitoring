@@ -54,12 +54,17 @@ public abstract class Vehicle {
 	}
 
 	@Override
-	public String toString() {
-		return "Veículo [" + marca + " " + modelo +
-				", Chassi=" + chassi +
-				", Km rodados=" + kmRodados +
-				", Velocidade atual=" + velocidadeAtual + " km/h]";
-	}
+public String toString() {
+    return "Veículo [" +
+           "Marca=" + marca +
+           ", Modelo=" + modelo +
+           ", Chassi=" + chassi +
+           ", Km rodados=" + kmRodados +
+           ", Velocidade atual=" + velocidadeAtual + " km/h" +
+           ", Status=" + (ativo ? "Ativo" : "Inativo") +
+           "]";
+}
+
 
 	// get set retornando
 	public String getModelo() {
