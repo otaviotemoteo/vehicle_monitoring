@@ -78,7 +78,6 @@ public class Operations {
             System.out.println("6. Registrar viagem");
             System.out.println("7. Recarregar bateria");
             System.out.println("8. Calcular tempo de voo restante");
-            System.out.println("9. Fazer manutenção no drone.");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             
@@ -109,9 +108,6 @@ public class Operations {
                     break;
                 case 8:
                     Views.exibirTempoVooRestante(drone);
-                    break;
-                case 9:
-                    agendarManutencaoDrone(drone);
                     break;
                 case 0:
                     return;
@@ -257,9 +253,5 @@ public class Operations {
         } else {
             System.out.println("ERRO: O drone precisa estar desligado para recarregar!");
         }
-    }
-    
-    private static void agendarManutencaoDrone(Drone drone) {
-        drone.agendarManutencao();
     }
 }

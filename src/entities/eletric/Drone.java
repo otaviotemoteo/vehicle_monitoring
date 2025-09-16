@@ -42,14 +42,6 @@ public class Drone extends ElectricVehicle {
         }
     }
 
-    public void verProximaManutencao() {
-        if (!isAtivo() && statusVoo.equals("Pousado")) {
-            System.out.println("Próxima manutenção agendada em 30 horas de voo.");
-        } else {
-            System.out.println("Não é possível verificar manutenção. O drone deve estar desligado e pousado.");
-        }
-    }
-
     public void decolar() {
         if (isAtivo() && calcularTempoVooRestante() > 0) {
             statusVoo = "Em voo";
