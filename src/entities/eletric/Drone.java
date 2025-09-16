@@ -12,10 +12,9 @@ public class Drone extends ElectricVehicle {
         this.tempoVoo = tempoVoo;
         this.altitudeAtual = 0;
         this.statusVoo = "Pousado";
-        this.setAtivo(false); // começa desligado
+        this.setAtivo(false); //começa desligado
     }
 
-    
     public void ligar() {
         if (!isAtivo()) {
             setAtivo(true);
@@ -84,47 +83,27 @@ public class Drone extends ElectricVehicle {
         return (getNivelBateria() / 100) * tempoVoo;
     }
 
-        @Override
+    @Override
     public String toString() {
-    return super.toString() + 
-           " | Drone [" +
-           "Altitude máxima=" + altitudeMax + " m" +
-           ", Altitude atual=" + altitudeAtual + " m" +
-           ", Tempo de voo=" + tempoVoo + " min" +
-           ", Status do voo=" + statusVoo +
-           "]";
+        return super.toString() +
+               " | Drone [" +
+               "Altitude máxima=" + altitudeMax + " m" +
+               ", Altitude atual=" + altitudeAtual + " m" +
+               ", Tempo de voo=" + tempoVoo + " min" +
+               ", Status do voo=" + statusVoo +
+               "]";
     }
-    //get set retornando
+
     
-    public double getAltitudeMax() {
-        return altitudeMax;
-    }
+    public double getAltitudeMax() { return altitudeMax; }
+    public void setAltitudeMax(double altitudeMax) { this.altitudeMax = altitudeMax; }
 
-    public void setAltitudeMax(double altitudeMax) {
-        this.altitudeMax = altitudeMax;
-    }
+    public double getTempoVoo() { return tempoVoo; }
+    public void setTempoVoo(double tempoVoo) { this.tempoVoo = tempoVoo; }
 
-    public double getTempoVoo() {
-        return tempoVoo;
-    }
+    public double getAltitudeAtual() { return altitudeAtual; }
+    public void setAltitudeAtual(double altitudeAtual) { this.altitudeAtual = altitudeAtual; }
 
-    public void setTempoVoo(double tempoVoo) {
-        this.tempoVoo = tempoVoo;
-    }
-
-    public double getAltitudeAtual() {
-        return altitudeAtual;
-    }
-
-    public void setAltitudeAtual(double altitudeAtual) {
-        this.altitudeAtual = altitudeAtual;
-    }
-
-    public String getStatusVoo() {
-        return statusVoo;
-    }
-
-    public void setStatusVoo(String statusVoo) {
-        this.statusVoo = statusVoo;
-    }
+    public String getStatusVoo() { return statusVoo; }
+    public void setStatusVoo(String statusVoo) { this.statusVoo = statusVoo; }
 }
