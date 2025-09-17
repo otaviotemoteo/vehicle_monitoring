@@ -1,5 +1,7 @@
 package entities.fuel;
 
+import main.Views;
+
 public class Car extends FuelVehicle {
     private double desgastePneus;
     private double nivelOleo;
@@ -14,7 +16,6 @@ public class Car extends FuelVehicle {
         this.statusPneu = "Bom";
     }
 
-    
     public void ligar() {
         if (!isAtivo()) {
             setAtivo(true);
@@ -30,6 +31,60 @@ public class Car extends FuelVehicle {
             System.out.println("Carro desligado com sucesso!");
         } else {
             System.out.println("O carro já está desligado!");
+        }
+    }
+
+    public void registrarViagemCompleta(double km) {
+        if (isAtivo()) {
+            registrarViagem(km);
+            atualizarConsumo(km);
+            this.desgastePneus += (km * 0.01); // 0.01% por km
+            this.nivelOleo -= (km * 0.02); // 0.02% por km
+
+            if (this.desgastePneus > 70) {
+                this.statusPneu = "Ruim - Precisa trocar";
+            } else if (this.desgastePneus > 50) {
+                this.statusPneu = "Regular";
+            }
+
+            System.out.println("Desgaste e consumo atualizados automaticamente!");
+        } else {
+            System.out.println("ERRO: O carro precisa estar ligado para registrar viagem!");
+        }
+    }
+
+    public void abastecerCompleto(double litros) {
+        if (!isAtivo()) {
+            abastecer(litros);
+            System.out.println("Carro abastecido com sucesso!");
+        } else {
+            System.out.println("ERRO: O carro precisa estar desligado para abastecer!");
+        }
+    }
+
+    public void trocarOleoCompleto() {
+        if (!isAtivo()) {
+            trocarOleo();
+            System.out.println("Óleo do carro trocado com sucesso!");
+        } else {
+            System.out.println("ERRO: O carro precisa estar desligado para trocar óleo!");
+        }
+    }
+
+
+    public void verificarPneusCompleto() {
+        if (!isAtivo()) {
+            Views.exibirStatusPneus(this);
+        } else {
+            System.out.println("ERRO: O carro precisa estar desligado para verificar pneus!");
+        }
+    }
+
+    public void fazerManutencaoCompleta() {
+        if (!isAtivo()) {
+            fazerManutencao();
+        } else {
+            System.out.println("ERRO: O carro precisa estar desligado para fazer manutenção!");
         }
     }
 
@@ -58,7 +113,6 @@ public class Car extends FuelVehicle {
         }
     }
 
-    
     private void trocarPneus() {
         desgastePneus = 0;
         statusPneu = "Bom";
@@ -72,7 +126,7 @@ public class Car extends FuelVehicle {
         System.out.println("Manutenção agendada para " + kmProximaManutencao + " km.");
     }
 
-    
+    // Getters e Setters
     public double getDesgastePneus() { return desgastePneus; }
     public void setDesgastePneus(double desgastePneus) { this.desgastePneus = desgastePneus; }
 
