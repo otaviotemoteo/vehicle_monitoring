@@ -61,13 +61,29 @@ public class Drone extends ElectricVehicle {
             System.out.println("Drone já está pousado.");
         }
     }
-
+    
     public void registrarViagem(double km) {
-        if (isAtivo()) {
-            setKmRodados(getKmRodados() + km);
+        if (isAtivo() && getStatusVoo().equals("Em voo")) {
+        	setKmRodados(getKmRodados() + km);
             System.out.println("Viagem registrada: " + km + " km. Total rodado: " + getKmRodados() + " km.");
+            
+            // Simula consumo de bateria baseado na distância
+            double consumoBateria = km * 0.5; // 0.5% por km
+            double novoBateria = getNivelBateria() - consumoBateria;
+            if (novoBateria < 0) novoBateria = 0;
+            setNivelBateria(novoBateria);
+
+            System.out.println("Bateria consumida: " + String.format("%.2f", consumoBateria) + "%");
+            System.out.println("Nível atual da bateria: " + String.format("%.1f", getNivelBateria()) + "%");
+
+            // Aviso se bateria estiver baixa
+            if (getNivelBateria() < 20) {
+                System.out.println("⚠️ ATENÇÃO: Bateria baixa! Considere pousar e recarregar.");
+            }
+        } else if (!isAtivo()) {
+            System.out.println("ERRO: O drone precisa estar ligado para registrar viagem!");
         } else {
-            System.out.println("Não é possível registrar viagem. O drone deve estar ligado.");
+            System.out.println("ERRO: O drone precisa estar em voo para registrar viagem!");
         }
     }
 
