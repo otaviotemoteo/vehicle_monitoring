@@ -67,7 +67,6 @@ public class Drone extends ElectricVehicle {
         	setKmRodados(getKmRodados() + km);
             System.out.println("Viagem registrada: " + km + " km. Total rodado: " + getKmRodados() + " km.");
             
-            // Simula consumo de bateria baseado na distância
             double consumoBateria = km * 0.5; // 0.5% por km
             double novoBateria = getNivelBateria() - consumoBateria;
             if (novoBateria < 0) novoBateria = 0;
