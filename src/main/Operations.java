@@ -1,9 +1,11 @@
 
 package main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import entities.fuel.Car;
+
 import entities.eletric.Drone;
+import entities.fuel.Car;
 
 public class Operations {
     private static Scanner scanner = new Scanner(System.in);
@@ -20,10 +22,19 @@ public class Operations {
             System.out.println("6. Verificar pneus");
             System.out.println("7. Fazer manutenção");
             System.out.println("0. Voltar");
-            System.out.print("Escolha uma opção: ");
 
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
+            int opcao;
+            while(true) {
+                System.out.print("Escolha uma opção: ");
+                try {
+                    opcao = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor inválido! Digite um número de 0 a 7.");
+                    scanner.nextLine(); // limpa o buffer
+                }
+            }
 
             switch (opcao) {
                 case 1:
@@ -33,13 +44,33 @@ public class Operations {
                     carro.desligar();
                     break;
                 case 3:
-                    System.out.print("Distância da viagem (km): ");
-                    double km = scanner.nextDouble();
+                    double km;
+                    while(true) {
+                        System.out.print("Distância da viagem (km): ");
+                        try {
+                            km = scanner.nextDouble();
+                            scanner.nextLine();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Valor inválido! Digite um número válido para a distância.");
+                            scanner.nextLine();
+                        }
+                    }
                     carro.registrarViagemCompleta(km);
                     break;
                 case 4:
-                    System.out.print("Litros para abastecer: ");
-                    double litros = scanner.nextDouble();
+                    double litros;
+                    while(true) {
+                        System.out.print("Litros para abastecer: ");
+                        try {
+                            litros = scanner.nextDouble();
+                            scanner.nextLine();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Valor inválido! Digite um número válido para os litros.");
+                            scanner.nextLine();
+                        }
+                    }
                     carro.abastecerCompleto(litros);
                     break;
                 case 5:
@@ -56,12 +87,9 @@ public class Operations {
                 default:
                     System.out.println("Opção inválida!");
             }
-
-            System.out.println("\nPressione Enter para continuar...");
-            scanner.nextLine();
         }
     }
-    
+
     public static void operarDrone(Drone drone) {
         while (true) {
             System.out.println("\n--- OPERAR DRONE ---");
@@ -74,43 +102,59 @@ public class Operations {
             System.out.println("6. Recarregar bateria");
             System.out.println("7. Calcular tempo de voo restante");
             System.out.println("0. Voltar");
-            System.out.print("Escolha uma opção: ");
-            
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-            
+
+            int opcao;
+            while(true) {
+                System.out.print("Escolha uma opção: ");
+                try {
+                    opcao = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor inválido! Digite um número de 0 a 7.");
+                    scanner.nextLine();
+                }
+            }
+
             switch (opcao) {
                 case 1:
-                	drone.ligar();
+                    drone.ligar();
                     break;
                 case 2:
-                	drone.desligar();
+                    drone.desligar();
                     break;
                 case 3:
-                	drone.decolar();
+                    drone.decolar();
                     break;
                 case 4:
-                	drone.pousar();
+                    drone.pousar();
                     break;
                 case 5:
-                    System.out.print("Distância da viagem (km): ");
-                    double km = scanner.nextDouble();
+                    double km;
+                    while(true) {
+                        System.out.print("Distância da viagem (km): ");
+                        try {
+                            km = scanner.nextDouble();
+                            scanner.nextLine();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Valor inválido! Digite um número válido para a distância.");
+                            scanner.nextLine();
+                        }
+                    }
                     drone.registrarViagem(km);
                     break;
                 case 6:
                     drone.recarregarBateria();
                     break;
                 case 7:
-                	Views.exibirTempoVooRestante(drone);
+                    Views.exibirTempoVooRestante(drone);
                     break;
                 case 0:
                     return;
                 default:
                     System.out.println("Opção inválida!");
             }
-            
-            System.out.println("\nPressione Enter para continuar...");
-            scanner.nextLine();
         }
     }
 }
