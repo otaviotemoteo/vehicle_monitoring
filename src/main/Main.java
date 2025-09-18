@@ -1,5 +1,6 @@
 package main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -11,12 +12,22 @@ public class Main {
         
         System.out.println("=== SISTEMA DE GERENCIAMENTO DE VEÍCULOS ===");
         
-        // Loop principal do sistema
+     // Loop principal do sistema
         while (true) {
             Menus.exibirMenuPrincipal();
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
             
+            int opcao;
+            while(true) {
+                try {
+                    opcao = scanner.nextInt();
+                    scanner.nextLine(); // Limpar buffer
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor inválido! Digite um número de 0 a 3.");
+                    scanner.nextLine(); // limpa o buffer
+                }
+            }
+
             switch (opcao) {
                 case 1:
                     Menus.menuVisualizarClasses();
